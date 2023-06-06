@@ -247,35 +247,6 @@ contains
 
 
 
-   !!! The following subroutines impose BCs 
-
-   subroutine outflow_bc()
-     use utility
-     implicit none
-     real(dp), dimension(:), allocatable(), intent(in) :: x
-     real(dp), dimension(:,:), allocatable(), intent(inout)::
-
-     u(1) = u(3)
-     u(2) = u(3)
-     u(N+3) = u(N+2)
-     u(N+4) = u(N+2)
-
-   end subroutine outflow_bc
-
-
-
-   subroutine periodic_BC()
-     use utility
-     implicit none
-     real(dp), dimension(:), allocatable(), intent(in) :: x
-     real(dp), dimension(:,:), allocatable(), intent(inout)::
-
-     u(1) = u(N+1)
-     u(2) = u(N+2)
-     u(N+3) = u(3)
-     u(N+4) = u(4)
-
-   end subroutine periodic_BC
 
 
 end module advect_init
