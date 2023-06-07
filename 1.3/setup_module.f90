@@ -7,7 +7,7 @@ module setup_module
   implicit none
 
   real(kind=8), save :: Ca, t0, tf, x_a, x_b
-  integer, save :: grid_points,  IC, BC, limiter
+  integer, save :: grid_points,  IC, BCs, limiter
   character(len=80), save :: methodType
 
 contains
@@ -21,7 +21,7 @@ contains
     call read_initFileReal('advect.init', 'CFL', Ca)
     call read_initFileInt('advect.init', 'grid_points', grid_points)
     call read_initFileInt('advect.init', 'IC', IC)
-    call read_initFileInt('advect.init', 'BC', BC)
+    call read_initFileInt('advect.init', 'BC', BCs)
     call read_initFileReal('advect.init','initial_time', t0)
     call read_initFileReal('advect.init','final_time', tf)
     call read_initFileReal('advect.init','x_a', x_a)

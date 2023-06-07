@@ -3,17 +3,18 @@
 module advect_init
 use utility 
 use IC_setup
+use bc
 
 implicit none
 
 
 contains
- subroutine advect_init_IC_BC(x,IC,u0)
+ subroutine advect_init_IC_BC(x,IC,BCs,u0)
      use utility
      use IC_setup
 
      implicit none 
-     integer, intent(in) :: IC !!!!, BC
+     integer, intent(in) :: IC, BCs
      real(dp), dimension(:),allocatable, intent(in) :: x
      real(dp), dimension(:), allocatable,intent(out):: u0
 
@@ -52,6 +53,12 @@ contains
      if (IC == 11) then 
          call ic_setup_11_748(x,u0)
          endif
+
+
+     if (BCs == 1) then
+         call bc_outflow(x,u0)
+     endif
+
 
  end subroutine advect_init_IC_BC
 

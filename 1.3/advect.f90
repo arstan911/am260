@@ -5,13 +5,15 @@ use setup_module
 use grid_init
 use advect_init
 use IC_setup
+use bc
 use advect_update
+use cfl
 
 
 implicit none 
 
 integer ::iters, i
-real(dp)::dt, dx 
+real(dp)::dt, dx , dt_new
 real(dp), dimension(:), allocatable :: x,t,u0
 
 
@@ -26,7 +28,7 @@ print*, 'final time:',tf
 print*, 'x left:',x_a
 print*, 'x right:',x_b
 print*, 'IC', IC
-print*, 'BC', BC
+print*, 'BC', BCs
 
 
 call grid_setup(x_a,x_b,grid_points ,t0,tf,iters,Ca,dx,dt,x,t)
@@ -38,14 +40,15 @@ do i=1,grid_points+4
  print*, x(i)
 enddo
 
-call advect_init_IC_BC(x,IC,u0)
+call advect_init_IC_BC(x,IC,BCs,u0)
 print*, 'Check the Initial u:'
 do i=1,grid_points+4
   print*, u0(i)
 enddo
 
-call advect_update_sr(methodType,limiter)
-
+call advect_update_sr(methodType,limiter,dx)
+call cfl_update(grid_points,Ca,dx,u0,dt_new)
+print*,"Updated dt:", dt_new
 
 
 end program advect
