@@ -4,6 +4,7 @@ initial_time     0.0         # [real] Starting time
 final_time       0.3         # [real] Final time   
 x_a              0.0         # [real] Left end X value   
 x_b              1.0         # [real] Right end X value   
-method          "FOG"        # [char] 'FOG' for First-Order Godunov, PLM for piece-wise linear
 IC               1           # [int] Choose IC from the list of examples eq-ons 7.38-7.48
 BC               1           # [int] '1' for Outflow BCs, '2' for periodoc BCs
+method          "FOG"        # [char] 'FOG' for First-Order Godunov, PLM for piece-wise linear
+Limiter          0           # [int] '1' for Outflow BCs, '2' for periodoc BCs

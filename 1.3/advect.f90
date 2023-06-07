@@ -5,6 +5,9 @@ use setup_module
 use grid_init
 use advect_init
 use IC_setup
+use advect_update
+
+
 implicit none 
 
 integer ::iters, i
@@ -17,6 +20,7 @@ call setup_init()
 print*, 'CFL number is', Ca
 print*, 'number of grid points is: ', grid_points
 print*, 'method:', methodType
+print*, 'Limiter:', limiter 
 print*, 'initial time:',t0
 print*, 'final time:',tf
 print*, 'x left:',x_a
@@ -40,6 +44,7 @@ do i=1,grid_points+4
   print*, u0(i)
 enddo
 
+call advect_update_sr(methodType,limiter)
 
 
 
