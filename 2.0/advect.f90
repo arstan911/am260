@@ -30,19 +30,8 @@ print*, 'x right:',x_b
 print*, 'IC', IC
 print*, 'BC', BCs
 
-
 call grid_setup(x_a, x_b, grid_points, t0, tf, iters, Ca, dx, dt, x ,t)
-print*, 'number of iterations:', iters
-print*,'dx: ',dx
-print*, 'dt', dt
-
-
 call advect_init_IC_BC(x, grid_points, IC, BCs, u0)
-print*, 'Check the Initial u:'
-do i=1,grid_points+4
-  print*, u0(i)
-enddo
-
 call advect_update_sr(methodType,limiter,Ca, dx, grid_points,t0,tf,u0)
 
 

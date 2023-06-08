@@ -20,11 +20,14 @@ contains
      if (method == "FOG") then
         call FOG_updater(Ca,dx,t0,tf,N,u)
      else
-        call PLM_updater
+        call PLM_updater(lim,Ca,dx,t0,tf,N,u)
+     endif
 
      if (lim == 0) then
        print*, 'okokokokok', dx
      endif
+
+
 
     end subroutine advect_update_sr
 

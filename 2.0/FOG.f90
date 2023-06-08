@@ -63,8 +63,6 @@ contains
                  endif
              endif
 
-
-
              u_buf(i) = u(i) - dt_new/dx *(flux_R - flux_L)
          enddo
 

@@ -1,6 +1,6 @@
 clear all; close all
 
-data = importdata('output_FOG.dat');
+data = importdata('output_PLM_limiter_1.dat');
 
 x = linspace(0,1,length(data(1,2:end)));
 
