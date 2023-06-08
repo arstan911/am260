@@ -3,6 +3,7 @@ use utility
 use FOG
 use cfl
 use bc
+use PLM
 
 implicit none
 
@@ -18,7 +19,8 @@ contains
 
      if (method == "FOG") then
         call FOG_updater(Ca,dx,t0,tf,N,u)
-     endif
+     else
+        call PLM_updater
 
      if (lim == 0) then
        print*, 'okokokokok', dx
