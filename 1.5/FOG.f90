@@ -36,7 +36,7 @@ contains
                      flux_L = 0.5*u(i)**2
                  endif
              else
-                 if (u(i-1)<= 0.0) then
+                 if (u(i-1)>= 0.0) then
                      flux_L = 0.5*u(i-1)**2
                  else if ((u(i-1)<0.0) .AND. (u(i)>0.0)) then
                      flux_L = 0.0
@@ -54,7 +54,7 @@ contains
                      flux_R = 0.5*u(i+1)**2
                  endif
              else
-                 if (u(i)<= 0.0) then
+                 if (u(i)>= 0.0) then
                      flux_R = 0.5*u(i)**2
                  else if ((u(i)<0.0) .AND. (u(i+1)>0.0)) then
                      flux_R = 0.0
