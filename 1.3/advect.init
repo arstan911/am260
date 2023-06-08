@@ -7,4 +7,4 @@ x_b              1.0         # [real] Right end X value
 IC               1           # [int] Choose IC from the list of examples eq-ons 7.38-7.48
 BC               1           # [int] '1' for Outflow BCs, '2' for periodoc BCs
 method          "FOG"        # [char] 'FOG' for First-Order Godunov, PLM for piece-wise linear
-Limiter          0           # [int] '1' for Outflow BCs, '2' for periodoc BCs
+Limiter          0           # [int] Number for the limiters:'0'- none(for FOG),'1'-upwind,'2'-downwind,'3'-centered,'4'-minmod,'5'-mc,'6'-vanLeer.
