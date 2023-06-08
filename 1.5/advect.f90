@@ -31,24 +31,20 @@ print*, 'IC', IC
 print*, 'BC', BCs
 
 
-call grid_setup(x_a,x_b,grid_points ,t0,tf,iters,Ca,dx,dt,x,t)
+call grid_setup(x_a, x_b, grid_points, t0, tf, iters, Ca, dx, dt, x ,t)
 print*, 'number of iterations:', iters
 print*,'dx: ',dx
 print*, 'dt', dt
-print*, 'x grid points:'
-do i=1,grid_points+4
- print*, x(i)
-enddo
 
-call advect_init_IC_BC(x,IC,BCs,u0)
+
+call advect_init_IC_BC(x, grid_points, IC, BCs, u0)
 print*, 'Check the Initial u:'
 do i=1,grid_points+4
   print*, u0(i)
 enddo
 
-call advect_update_sr(methodType,limiter,dx)
-call cfl_update(grid_points,Ca,dx,u0,dt_new)
-print*,"Updated dt:", dt_new
+call advect_update_sr(methodType,limiter,Ca, dx, grid_points,t0,tf,u0)
+
 
 
 end program advect

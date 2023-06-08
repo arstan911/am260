@@ -1,19 +1,23 @@
 module advect_update
 use utility
+use FOG
+use cfl
+use bc
 
 implicit none
 
 contains 
 
-    subroutine advect_update_sr(method, lim, dx)
+    subroutine advect_update_sr(method, lim,Ca, dx, N,t0,tf,u)
      use utility
      implicit none
      character(len=80), intent(in) :: method
-     integer, intent(in) :: lim
-     real(dp), intent(in):: dx
+     integer, intent(in) :: lim, N
+     real(dp), intent(in):: dx, t0, tf, Ca
+     real(dp), dimension(:), allocatable, intent(in) :: u
 
      if (method == "FOG") then
-       print*, 'ok ok ok',dx
+        call FOG_updater(Ca,dx,t0,tf,N,u)
      endif
 
      if (lim == 0) then

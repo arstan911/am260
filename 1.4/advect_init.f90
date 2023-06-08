@@ -9,16 +9,16 @@ implicit none
 
 
 contains
- subroutine advect_init_IC_BC(x,IC,BCs,u0)
+ subroutine advect_init_IC_BC(x,N,IC,BCs,u0)
      use utility
      use IC_setup
 
      implicit none 
-     integer, intent(in) :: IC, BCs
+     integer, intent(in) :: IC, BCs,N
      real(dp), dimension(:),allocatable, intent(in) :: x
      real(dp), dimension(:), allocatable,intent(out):: u0
 
-     allocate(u0(size(x)))
+     allocate(u0(N+4))
      u0 = 0.0
      if (IC == 1) then 
          call ic_setup_1_738(x,u0)
@@ -56,7 +56,7 @@ contains
 
 
      if (BCs == 1) then
-         call bc_outflow(x,u0)
+         call bc_outflow(N,u0)
      endif
 
 
