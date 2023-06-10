@@ -1,0 +1,10 @@
+CFL              0.9         # [real] Input CFL
+grid_points      32          # [int] Number of grid points (resolution)
+initial_time     0.0         # [real] Starting time   
+final_time       0.3         # [real] Final time   
+x_a              0.0         # [real] Left end X value   
+x_b              1.0         # [real] Right end X value   
+IC               11           # [int] Choose IC from the list of examples eq-ons 7.38-7.48
+BC               2           # [int] '1' for Outflow BCs, '2' for periodoc BCs
+method          "PLM"        # [char] 'FOG' for First-Order Godunov, PLM for piece-wise linear
+Limiter          5           # [int] Number for the limiters:'0'- none(for FOG),'1'-upwind,'2'-downwind,'3'-centered,'4'-minmod,'5'-mc,'6'-vanLeer.
