@@ -14,14 +14,14 @@ x4 = linspace(0,1,length(data4(1,2:end)));
 figure(1)
 plot(x1,data1(1,2:end),'DisplayName','INITIAL')
 hold on
-grid minor
+grid on
 plot(x1,data1(end,2:end),'-','LineWidth',1.5, 'DisplayName','FOG')
 plot(x2,data2(end,2:end),'--o','LineWidth',1.5,'DisplayName','PLM minmod')
 plot(x3,data3(end,2:end),'--x','LineWidth',1.5,'DisplayName','PLM MC')
 plot(x4,data4(end,2:end),'--square','LineWidth',1.5,'DisplayName','PLM van Leer')
-
+ %ylim([-3,3])
 legend()
-title("Solutions for case 1, Ca = 0.9, N = 32")
+title("Solutions for case 3, Ca = 0.6, N = 32")
 hold off
 
 %figure(2)
