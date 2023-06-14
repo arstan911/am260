@@ -1,6 +1,6 @@
 FC	= gfortran
 
-LDFLAGS = -framework accelerate
+#LDFLAGS = -framework accelerate
 
 FFLAGS_OPT = -ggdb -O3 -fdefault-real-8 -fdefault-double-8\
         -ffree-line-length-none -Wuninitialized -fimplicit-none
@@ -48,7 +48,7 @@ OBJS  = driver_euler1d.o \
 
 #Use this for initial phase of implementations allowing debugging flags 
 $(EXE_FILE) : $(OBJS)
-	@$(FC) $(FFLAGS_DEBUG) $(OBJS) -o $(EXE_FILE) $(LDFLAGS)
+	@$(FC) $(FFLAGS_DEBUG) $(OBJS) -o $(EXE_FILE)
 	@echo "debug code is now linking..."
 
 #LET'S APPLY GENERIC SUFFIX RULE HERE FOR FORTRAN 90

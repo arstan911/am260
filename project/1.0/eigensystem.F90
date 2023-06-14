@@ -62,9 +62,21 @@ contains
        
     else
        !! Primitive eigenvector
-       !! STUDENTS: PLEASE FINISH THIS PRIMITIVE RIGHT EIGEN VECTORS
-       print*,'eigeysystem.F90: right eigenvectors'
-       stop
+       reig(DENS_VAR,SHOCKLEFT) = 1.
+       reig(VELX_VAR,SHOCKLEFT) = -0.5
+       reig(PRES_VAR,SHOCKLEFT) = 1.
+       reig(:,SHOCKLEFT) = -hdai*reig(:,SHOCKLEFT)
+
+       reig(DENS_VAR,CTENTROPY) = 1.0
+       reig(VELX_VAR,CTENTROPY) = 0.0
+       reig(PRES_VAR,CTENTROPY) = 0.0
+       
+       reig(DENS_VAR,SHOCKRGHT) = 1.
+       reig(VELX_VAR,SHOCKRGHT) = 0.5
+       reig(PRES_VAR,SHOCKRGHT) = 1.0
+       reig(:,SHOCKRGHT) = hdai*reig(:,SHOCKRGHT)
+      
+     
     endif
     
     return
@@ -90,15 +102,38 @@ contains
     
     if (conservative) then
        !! Conservative eigenvector
-       !! STUDENTS: PLEASE FINISH THIS CONSERVATIVE LEFT EIGEN VECTORS
-       print*,'eigeysystem.F90: left conservative eigenvectors'
-       stop
+       leig(DENS_VAR,SHOCKLEFT) = -ekin - a*u/(g-1)
+       leig(VELX_VAR,SHOCKLEFT) = 2*hdai*(-ekin + a**2/(g-1))
+       leig(PRES_VAR,SHOCKLEFT) = ekin - a*u/(g-1)
+       
+       leig(DENS_VAR,CTENTROPY) = u + a/(g-1)
+       leig(VELX_VAR,CTENTROPY) = 2*hdai*u
+       leig(PRES_VAR,CTENTROPY) = -u + a/(g-1)
+       
+       leig(DENS_VAR,SHOCKRGHT) = -1.0
+       leig(VELX_VAR,SHOCKRGHT) = -2*hdai
+       leig(PRES_VAR,SHOCKRGHT) = 1.0
+      
+       leig(:,:) = (g-1)/(2*hda)
+       
+      
        
     else
        !! Primitive eigenvector
-       !! STUDENTS: PLEASE FINISH THIS PRIMITIVE LEFT EIGEN VECTORS
-       print*,'eigeysystem.F90: left prim eigenvectors'
-       stop
+       leig(DENS_VAR,SHOCKLEFT) = 0.0
+       leig(VELX_VAR,SHOCKLEFT) = 1.0
+       leig(PRES_VAR,SHOCKLEFT) = -1.0/(2*hda)
+      
+
+       leig(DENS_VAR,CTENTROPY) = 1.0
+       leig(VELX_VAR,CTENTROPY) = 0.0
+       leig(PRES_VAR,CTENTROPY) = -1.0/(a**2)
+       
+       leig(DENS_VAR,SHOCKRGHT) = 0.0
+       leig(VELX_VAR,SHOCKRGHT) = 1.0
+       leig(PRES_VAR,SHOCKRGHT) = 1.0/(2*hda)
+      
+       
 
     endif
     

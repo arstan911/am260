@@ -24,7 +24,7 @@ contains
     real, intent(OUT) :: delta
 
     ! STUDENTS: PLEASE FINISH THIS MC LIMITER
-    stop
+    delta = (sign(1.0,a) + sign(1.0,b))*min(min(abs(a),abs(b)),0.25*abs(a+b))
     
     return
   end subroutine mc
@@ -36,7 +36,11 @@ contains
     real, intent(OUT) :: delta
 
     ! STUDENTS: PLEASE FINISH THIS VAN LEER'S LIMITER
-    stop
+    if (a*b > 0.0) then
+       delta = 2*a*b/(a+b)
+    else if (a*b <= 0.0) then
+       delta = 0
+    endif
     
     return
   end subroutine vanLeer

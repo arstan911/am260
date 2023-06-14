@@ -22,7 +22,6 @@ subroutine soln_PLM(dt)
   integer :: nVar
   
 
-  
   ! we need conservative eigenvectors
   conservative = .false.
 
@@ -52,10 +51,23 @@ subroutine soln_PLM(dt)
            delW(kWaveNum) = dot_product(leig(DENS_VAR:PRES_VAR,kWaveNum),delV(DENS_VAR:PRES_VAR))
         enddo
      elseif (sim_charLimiting) then
-        stop
+        do kWaveNum = 1, NUMB_WAVE
+           ! slope limiting
+           delL(DENS_VAR:PRES_VAR) = dot_product(leig(DENS_VAR:PRES_VAR,kWaveNum), (gr_V(DENS_VAR:PRES_VAR,i  )-gr_V(DENS_VAR:PRES_VAR,i-1)))
+           delR(DENS_VAR:PRES_VAR) = dot_product(leig(DENS_VAR:PRES_VAR,kWaveNum),(gr_V(DENS_VAR:PRES_VAR,i+1)-gr_V(DENS_VAR:PRES_VAR,i)))
+           do nVar = DENS_VAR,PRES_VAR
+              if (sim_limiter == 'minmod') then
+                 call minmod(delL(nVar),delR(nVar),delW(nVar))
+              elseif (sim_limiter == 'vanLeer') then
+                 call vanLeer(delL(nVar),delR(nVar),delW(nVar))
+              elseif (sim_limiter == 'mc') then
+                 call mc(delL(nVar),delR(nVar),delW(nVar))
+              endif
+           enddo
+         enddo
         !STUDENTS: PLEASE FINISH THIS CHARACTERISTIC LIMITING
         !(THE IMPLEMENTATION SHOULD NOT BE LONGER THAN THE PRIMITIVE LIMITING CASE)
-     endif
+      endif
 
 
 

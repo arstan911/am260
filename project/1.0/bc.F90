@@ -14,11 +14,11 @@ contains
        call bc_outflow(gr_V)
     elseif (sim_bcType == 'reflect') then
        call bc_reflect(gr_V)
-    elseif (sim_bcType == 'periodic') then
-    elseif (sim_bcType == 'user') then
+    !elseif (sim_bcType == 'periodic') then
+    !elseif (sim_bcType == 'user') then
 
        ! STUDENTS: PLEASE IMPLEMENT THIS FOR THE SHU-OSHER PROBLEM
-       stop
+       !stop
     endif
 
   end subroutine bc_apply
