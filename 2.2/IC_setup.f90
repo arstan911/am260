@@ -50,6 +50,8 @@ contains
      do i = 1,size(x)
          if (x(i)>0.5) then
              u0(i) = -2.0
+         else 
+             u0(i) = 1.0    
          endif
      enddo
 
