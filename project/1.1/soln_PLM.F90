@@ -65,8 +65,6 @@ subroutine soln_PLM(dt)
               endif
            enddo
          enddo
-        !STUDENTS: PLEASE FINISH THIS CHARACTERISTIC LIMITING
-        !(THE IMPLEMENTATION SHOULD NOT BE LONGER THAN THE PRIMITIVE LIMITING CASE)
       endif
 
 
@@ -83,9 +81,11 @@ subroutine soln_PLM(dt)
 
         
         if (sim_riemann == 'roe') then
-           stop
-           ! STUDENTS: PLEASE FINISH THIS ROE SOLVER CASE
-           ! THIS SHOULDN'T BE LONGER THAN THE HLL CASE
+             vecR(DENS_VAR:PRES_VAR) = 0.5*(1.0 - lambdaDtDx)*reig(DENS_VAR:PRES_VAR,kWaveNum)*delW(kWaveNum)
+              sigR(DENS_VAR:PRES_VAR) = sigR(DENS_VAR:PRES_VAR) + vecR(DENS_VAR:PRES_VAR)
+
+              vecL(DENS_VAR:PRES_VAR) = 0.5*(-1.0 - lambdaDtDx)*reig(DENS_VAR:PRES_VAR,kWaveNum)*delW(kWaveNum)
+              sigL(DENS_VAR:PRES_VAR) = sigL(DENS_VAR:PRES_VAR) + vecL(DENS_VAR:PRES_VAR) 
         elseif (sim_riemann == 'hll') then
               vecR(DENS_VAR:PRES_VAR) = 0.5*(1.0 - lambdaDtDx)*reig(DENS_VAR:PRES_VAR,kWaveNum)*delW(kWaveNum)
               sigR(DENS_VAR:PRES_VAR) = sigR(DENS_VAR:PRES_VAR) + vecR(DENS_VAR:PRES_VAR)

@@ -6,8 +6,8 @@ sim_name 'PLM'
 sim_cfl 0.8 
 sim_tmax 0.2
 sim_nStep 100000
-sim_riemann 'hll'
-sim_limiter 'mc'
+sim_riemann 'roe'
+sim_limiter 'minmod'
 sim_charLimiting .false.
 sim_order 2
 
