@@ -36,7 +36,7 @@ subroutine roe(vL,vR,Flux)
   call prim2cons(vR,uR)
 
   do kWaveNum = 1, NUMB_WAVE
-     sigma = sigma + leig(DENS_VAR:ENER_VAR,kWaveNum)*(uR(DENS_VAR:ENER_VAR)-uL(DENS_VAR:ENER_VAR))*abs(lambda(kWaveNum))*reig(DENS_VAR:ENER_VAR,kWaveNum)
+      sigma = sigma + leig(DENS_VAR:ENER_VAR,kWaveNum) * (uR(DENS_VAR:ENER_VAR) -uL(DENS_VAR:ENER_VAR)) * abs(lambda(kWaveNum)) * reig(DENS_VAR:ENER_VAR,kWaveNum)
   end do
   
   ! numerical flux
@@ -45,3 +45,4 @@ subroutine roe(vL,vR,Flux)
 
   return
 end subroutine roe
+!sigma = sigma + leig(DENS_VAR:ENER_VAR,kWaveNum)*(uR(DENS_VAR:ENER_VAR)-uL(DENS_VAR:ENER_VAR))*abs(lambda(kWaveNum))*reig(DENS_VAR:ENER_VAR,kWaveNum)

@@ -51,11 +51,11 @@ contains
        reig(PRES_VAR,SHOCKLEFT) = ekin + a**2/g - a*u
        reig(:,SHOCKLEFT) = -hdai*reig(:,SHOCKLEFT)
 
-       reig(DENS_VAR,CTENTROPY) = 1.
+       reig(DENS_VAR,CTENTROPY) = 1.0
        reig(VELX_VAR,CTENTROPY) = u
        reig(PRES_VAR,CTENTROPY) = ekin
        
-       reig(DENS_VAR,SHOCKRGHT) = 1.
+       reig(DENS_VAR,SHOCKRGHT) = 1.0
        reig(VELX_VAR,SHOCKRGHT) = u + a
        reig(PRES_VAR,SHOCKRGHT) = ekin + a**2/g + a*u
        reig(:,SHOCKRGHT) = hdai*reig(:,SHOCKRGHT)
